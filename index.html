@@ -65,8 +65,9 @@
   <script>
     async function getPrices() {
       try {
-        const response = await fetch('https://api.exchangerate.host/latest?base=USD&symbols=IRR'); // لینک واقعی API
+        const response = await fetch('https://static.tgju.org/views/default/js/tgju-search.js?13'); // لینک واقعی API
         const data = await response.json();
+        const price = data.rates.IRR;
         document.getElementById('dollar').textContent = data.dollar;
         document.getElementById('gold').textContent = data.gold;
         document.getElementById('coin').textContent = data.coin;
