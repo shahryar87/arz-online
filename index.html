@@ -1,1 +1,75 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>قیمت ارز آنلاین</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      text-align: center;
+      padding: 50px;
+    }
 
+    h1 {
+      color: #333;
+    }
+
+    .price-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: -5 4px 10px rgba(0,0,0,0.1);
+      display: inline-block;
+      padding: 20px 40px;
+      margin: 20px;
+      min-width: 150px;
+    }
+
+    .price-card p {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    .price-value {
+      font-weight: bold;
+      font-size: 24px;
+      color: #2a9d8f;
+    }
+  </style>
+</head>
+<body>
+  <h1>قیمت ارز، طلا و سکه</h1>
+
+  <div class="price-card">
+    <p>دلار</p>
+    <p class="price-value" id="dollar">loading...</p>
+  </div>
+
+  <div class="price-card">
+    <p>طلا</p>
+    <p class="price-value" id="gold">loading...</p>
+  </div>
+
+  <div class="price-card">
+    <p>سکه</p>
+    <p class="price-value" id="coin">loading...</p>
+  </div>
+
+  <script>
+    async function getPrices() {
+      try {
+        const response = await fetch('https://api.meyarapi.ir/latest'); // لینک واقعی API
+        const data = await response.json();
+        document.getElementById('dollar').textContent = data.dollar;
+        document.getElementById('gold').textContent = data.gold;
+        document.getElementById('coin').textContent = data.coin;
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    getPrices();
+    setInterval(getPrices, 60000); // آپدیت هر دقیقه
+  </script>
+</body>
+</html>
