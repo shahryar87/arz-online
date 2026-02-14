@@ -65,6 +65,7 @@
   <script>
     async function getPrices() {
       try {
+        const response = await
         const response = await fetch('GET https://api.alanchand.com?type=crypto&symbols=btc,eth'); 
           headers: {
     'Authorization'; 'Bearer YOUR_API_TOKEN'
